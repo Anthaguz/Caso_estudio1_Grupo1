@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Caso_estudio1_Grupo1.Models
 {
@@ -14,6 +15,8 @@ namespace Caso_estudio1_Grupo1.Models
         public string Foto { get; set; }
         [Required]
         public string Contrasena { get; set; }
+        [NotMapped]
+        public IFormFile Archivo { get; set; }
 
         //Constructor vacio
         public Usuario()
@@ -34,6 +37,14 @@ namespace Caso_estudio1_Grupo1.Models
             Nombre = nombre;
             Username = username;
             Foto = foto;
+            Contrasena = contrasena;
+        }
+        
+        //Constructor con nombre , username y contraseña
+        public Usuario(string nombre, string username, string contrasena)
+        {
+            Nombre = nombre;
+            Username = username;
             Contrasena = contrasena;
         }
 

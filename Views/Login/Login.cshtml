@@ -4,7 +4,7 @@
 <section>
     <div class="contenedor">
         <div class="formulario">
-            <form method="post" action="/Login/Login">
+            <form method="post" action="/Login/LoginAttempt">
                 <h2>Iniciar Sesion</h2>
 
                 <div class="mb-3">
@@ -15,13 +15,6 @@
                     <label for="password">Password: </label>
                     <input type="password" id="password" name="password" class="form-control" required value="@ViewData["password"]" />
                 </div>
-                <div class="olvidar">
-                    <label for="#">
-                        <input type="checkbox" />
-                        <a href="#">Olvide la contraseña</a>
-                    </label>
-                </div>
-                <br />
                 <button type="submit" class="btn btn-primary mb-3" style="width:auto">Acceder</button>
                 @if (ViewData.ContainsKey("Error"))
                 {

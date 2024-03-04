@@ -1,5 +1,33 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
+<form method="post" action="/Login/RegisterAttempt" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required value="@ViewData["nombre"]" />
+    </div>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" class="form-control" required value="@ViewData["Username"]" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" required value="@ViewData["password"]" />
+    </div>
+    <div class="form-group">
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="Archivo" class="form-label">Foto de perfil</label>
+        <input class="form-control-file" type="file" id="Archivo" name="Archivo">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary mb-3" style="width:auto">Añadir usuario</button>
+    @if (ViewData.ContainsKey("Error"))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["Error"]
+        </div>
+    }
+</form>

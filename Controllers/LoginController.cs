@@ -1,10 +1,17 @@
 ﻿using Caso_estudio1_Grupo1.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 namespace Caso_estudio1_Grupo1.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+        public LoginController(IWebHostEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
         public IActionResult Index()
         {
             return View();
@@ -27,14 +34,14 @@ namespace Caso_estudio1_Grupo1.Controllers
                 ViewData["Error"] = "El usuario no existe";
                 ViewData["Username"] = username;
                 ViewData["Password"] = password;
-                return View("LoginForm");
+                return View("Login");
             }
             else if (Usuario.Contrasena != password)
             {
                 ViewData["Error"] = "La contraseña es incorrecta";
                 ViewData["Username"] = username;
                 ViewData["Password"] = password;
-                return View("LoginForm");
+                return View("Login");
             }
             else
             {
@@ -46,95 +53,63 @@ namespace Caso_estudio1_Grupo1.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult RegisterAttempt()
-        //{
-        //    var username = Request.Form["username"];
-        //    var nombre = Request.Form["nombre"];
-        //    var password = Request.Form["password"];
-        //    var confirm_password = Request.Form["confirm_password"];
-        //    if (password != confirm_password)
-        //    {
-        //        ViewData["Error"] = "Las contraseñas no coinciden";
-        //        ViewData["Username"] = username;
-        //        ViewData["Nombre"] = nombre;
-        //        ViewData["Password"] = password;
-        //        return View("RegisterForm");
-        //    }
-        //    else if (username == "" || nombre == "" || password == "" || confirm_password == "")
-        //    {
-        //        ViewData["Error"] = "Todos los campos son requeridos";
-        //        return View("RegisterForm");
-        //    }
-        //    else if (CRUD.GetUsuarioByUsername(username) != null)
-        //    {
-        //        ViewData["Error"] = "El nombre de usuario ya existe";
-        //        ViewData["Username"] = username;
-        //        ViewData["Nombre"] = nombre;
-        //        ViewData["Password"] = password;
-        //        return View("RegisterForm");
-        //    }
-        //    else
-        //    {
-        //        password = Usuario.encriptar(password);
-        //        var User = new Usuario(nombre, username, password);
-        //        CRUD.CreateUsuario(User);
-        //        return View("LoginForm");
-        //    }
-        //}
-
         [HttpPost]
-        public async Task<IActionResult> SubmitForm(Usuario usuario)
+        public async Task<IActionResult> RegisterAttempt(Usuario usuario)
         {
-            if (usuario != null)
+            var username = Request.Form["username"];
+            var nombre = Request.Form["nombre"];
+            var password = Request.Form["password"];
+            var confirm_password = Request.Form["confirm_password"];
+            //if (ModelState.IsValid)
+            //{
+            //    if (usuario.Archivo != null && usuario.Archivo.Length > 0)
+            //    {
+            //        using (var memoryStream = new MemoryStream())
+            //        {
+            //            await usuario.Archivo.CopyToAsync(memoryStream);
+            //            usuario.Foto = Convert.ToBase64String(memoryStream.ToArray());
+            //            var test = "test";
+            //        }
+            //    }
+            //}
+            if (password != confirm_password)
             {
-                Byte[] bytes = System.IO.File.ReadAllBytes(usuario.Foto);
-                String file = Convert.ToBase64String(bytes);
-                using (var context = new DatabaseContext())
-                {
-                    usuario.Foto = file;
-                    context.Add(usuario);
-                    await context.SaveChangesAsync();
-                    return View("Index");
-                }
+                ViewData["Error"] = "Las contraseñas no coinciden";
+                ViewData["Username"] = username;
+                ViewData["Nombre"] = nombre;
+                ViewData["Password"] = password;
+                return View("Registro");
             }
-            return Content("<a>SALIO MAL</a>");
+            else if (username == "" || nombre == "" || password == "" || confirm_password == "")
+            {
+                ViewData["Error"] = "Todos los campos son requeridos";
+                return View("Registro");
+            }
+            else if (CRUD.GetUsuarioByUsername(username) != null)
+            {
+                ViewData["Error"] = "El nombre de usuario ya existe";
+                ViewData["Username"] = username;
+                ViewData["Nombre"] = nombre;
+                ViewData["Password"] = password;
+                return View("Registro");
+            }
+            else
+            {
+                Byte[] bytes;
+                using (var memoryStream = new MemoryStream())
+                {
+                    usuario.Archivo.CopyTo(memoryStream);
+                    bytes = memoryStream.ToArray();
+                }
+                //Byte[] bytes = System.IO.File.ReadAllBytes(usuario.Archivo);
+                String FotoFinal = Convert.ToBase64String(bytes);
+                password = Usuario.encriptar(password);
+                var User = new Usuario(nombre, username, password);
+                User.Foto = FotoFinal;
+                CRUD.CreateUsuario(User);
+                return View("Login");
+            }
         }
-
-        //POST method that will receive the uplaod of an image and store it in wwwroot/images
-        [HttpPost]
-        public async Task<IActionResult> UploadImage(IFormFile file)
-        {
-            if (file != null)
-            {
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", file.FileName);
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-                return Content("<a>Imagen subida</a>");
-            }
-            return Content("<a>Imagen no subida</a>");
-        }
-
-        //POST method that will receive an Usuario. Part of the Usuario the user has to upload a profile picture. The image will be stored in wwwroot/images
-        [HttpPost]
-        public async Task<IActionResult> SubmitForm(Usuario usuario, IFormFile file)
-        {
-            if (usuario != null)
-            {
-                Byte[] bytes = System.IO.File.ReadAllBytes(usuario.Foto);
-                String archivo = Convert.ToBase64String(bytes);
-                using (var context = new DatabaseContext())
-                {
-                    usuario.Foto = archivo;
-                    context.Add(usuario);
-                    await context.SaveChangesAsync();
-                    return View("Index");
-                }
-            }
-            return Content("<a>SALIO MAL</a>");
-        }   
 
     }
 }
