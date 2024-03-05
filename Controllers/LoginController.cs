@@ -1,4 +1,5 @@
 ﻿using Caso_estudio1_Grupo1.Models;
+using Caso_estudio1_Grupo1.Statics;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
 
@@ -45,6 +46,10 @@ namespace Caso_estudio1_Grupo1.Controllers
             }
             else
             {
+                //hacer el login
+                CookieOptions cookieOptions = LoginService.GetCookieOptions();
+                string token = LoginService.CrearSesion(Usuario.IdUsuario);
+                HttpContext.Response.Cookies.Append("token", token, cookieOptions);
                 return View("~/Views/Home/Index.cshtml");
             }
         }

@@ -143,6 +143,21 @@ namespace Caso_estudio1_Grupo1.Models
             }
         }
 
+        public static Sesiones FindSesionByUserId(int id)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Sesiones.Where(s => s.IdUsuario == id).FirstOrDefault();
+            }
+        }
+
+        public static List<Sesiones> FindSesionesByUserId(int id)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Sesiones.Where(s => s.IdUsuario == id).ToList();
+            }
+        }
 
 
         

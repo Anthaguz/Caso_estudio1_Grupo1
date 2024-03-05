@@ -1,4 +1,5 @@
 using Case_estudio1_Grupo1.Models;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,11 +16,21 @@ namespace Case_estudio1_Grupo1.Controllers
 
         public IActionResult Index()
         {
+            var token = HttpContext.Request.Cookies["token"];
+            if (token==null)
+            {
+                return Redirect("~/login/login");
+            }
             return View();
         }
 
         public IActionResult Privacy()
         {
+            var token = HttpContext.Request.Cookies["token"];
+            if (token == null)
+            {
+                return Redirect("~/login/login");
+            }
             return View();
         }
 

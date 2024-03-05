@@ -1,0 +1,134 @@
+﻿
+
+<form method="post" action="/gato/Jugada">
+	<div class="container g-0">
+		<div class="row text-center g-0">
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("1"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="1" value="@ViewData["1"]" />
+				}else{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="1" />
+				}
+			</div>
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("2"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="2" value="@ViewData["2"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="2" />
+				}
+			</div>
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("3"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="3" value="@ViewData["3"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="3" />
+				}
+			</div>
+		</div>
+		<br />
+		<div class="row text-center g-0">
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("4"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="4" value="@ViewData["4"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="4" />
+				}
+			</div>
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("5"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="5" value="@ViewData["5"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="5" />
+				}
+			</div>
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("6"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="6" value="@ViewData["6"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="6" />
+				}
+			</div>
+		</div>
+		<br />
+		<div class="row text-center g-0">
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("7"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="7" value="@ViewData["7"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="7" />
+				}
+			</div>
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("8"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="8" value="@ViewData["8"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="8" />
+				}
+			</div>
+			<div class="col-4 g-0">
+				@if (ViewData.ContainsKey("9"))
+				{
+					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="9" value="@ViewData["9"]" />
+				}
+				else
+				{
+					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="9" />
+				}
+			</div> 
+		</div>
+	</div>
+	<br	/>
+	<br	/>
+	<br	/>
+	<br />
+	<div class="container g-0">
+		@{
+			int casilla = 1;
+		}
+		@for (int i = 1; i < 4; i++)
+		{
+			<div class="row text-center g-0">
+				@for (int j = 1; j < 4; j++)
+				{
+					<div class="col-4 g-0">
+						@{string casillaValue= "c"+casilla.ToString();}
+						@if (ViewData.ContainsKey(casilla.ToString()))
+							{
+							<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="@casillaValue" value="@ViewData[casilla.ToString()]" />
+						}
+						else
+						{
+							<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="@casillaValue" value="@casilla.ToString()" />
+						}
+						@{
+							casilla++;
+						}
+					</div>
+				}
+			</div>
+		}
+	</div>
+</form>
+
