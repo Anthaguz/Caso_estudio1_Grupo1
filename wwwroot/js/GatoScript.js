@@ -1,12 +1,12 @@
-﻿$(function () {
-    // set up form validation here
-});
+﻿//$(function () {
+//    // set up form validation here
+//});
 
-$("#gatoform").on("submit", function (e) {
-    e.preventDefault();
-    await(10000);
-    query();
-});
+//$("#gatoform").on("submit", function (e) {
+//    e.preventDefault();
+//    await(10000);
+//    query();
+//});
 
 function query(botonPresionado) {
     var dataString = "";
@@ -28,36 +28,9 @@ var c9 = $("#c9").val();
         success: function () {
             alert("Actualidad");
             //ahora vamos a procesar la respuesta del controller que es un simple string, se la mostraremos al usuario en un alert
+            //Esto es solo para verificar que se está obteniendo correctamente, por el momento no funciona
             alert(data);
 
         }
     });
 }
-
-
-//<div id="contact_form">
-//    <form name="contact" action="">
-//        <fieldset>
-//            <div class="input-box">
-//                <label for="name" id="name_label">Name</label>
-//                <input type="text" name="name" id="name" minlength="3" placeholder="Monty" class="text-input" required />
-//            </div>
-
-//            <div class="input-box">
-//                <label for="email" id="email_label">Email</label>
-//                <input type="email" name="email" id="email" placeholder="example@tutsplus.com" class="text-input" />
-//            </div>
-
-//            <div class="input-box">
-//                <label for="phone" id="phone_label">Phone</label>
-//                <input type="tel" name="phone" id="phone" class="text-input" placeholder="856-261-9988" />
-//            </div>
-
-//            <input type="submit" name="submit" class="button" id="submit_btn" value="Send" />
-//        </fieldset>
-//    </form>
-//    <div class="greetings">
-//        <h1>Contact US</h1>
-//        <p>We are waiting to hear from you!</p>
-//    </div>
-//</div>
