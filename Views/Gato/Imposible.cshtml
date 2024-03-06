@@ -1,134 +1,204 @@
-﻿
-
-<form method="post" action="/gato/Jugada">
-	<div class="container g-0">
-		<div class="row text-center g-0">
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("1"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="1" value="@ViewData["1"]" />
-				}else{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="1" />
-				}
-			</div>
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("2"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="2" value="@ViewData["2"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="2" />
-				}
-			</div>
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("3"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="3" value="@ViewData["3"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="3" />
-				}
-			</div>
-		</div>
-		<br />
-		<div class="row text-center g-0">
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("4"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="4" value="@ViewData["4"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="4" />
-				}
-			</div>
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("5"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="5" value="@ViewData["5"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="5" />
-				}
-			</div>
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("6"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="6" value="@ViewData["6"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="6" />
-				}
-			</div>
-		</div>
-		<br />
-		<div class="row text-center g-0">
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("7"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="7" value="@ViewData["7"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="7" />
-				}
-			</div>
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("8"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="8" value="@ViewData["8"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="8" />
-				}
-			</div>
-			<div class="col-4 g-0">
-				@if (ViewData.ContainsKey("9"))
-				{
-					<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="9" value="@ViewData["9"]" />
-				}
-				else
-				{
-					<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="9" />
-				}
-			</div> 
-		</div>
-	</div>
-	<br	/>
-	<br	/>
-	<br	/>
-	<br />
-	<div class="container g-0">
-		@{
-			int casilla = 1;
-		}
-		@for (int i = 1; i < 4; i++)
-		{
+﻿<script src="~/js/GatoScript.js"></script>
+<div id="div_gato">
+	@* 	<div class="container g-0">
 			<div class="row text-center g-0">
-				@for (int j = 1; j < 4; j++)
-				{
-					<div class="col-4 g-0">
-						@{string casillaValue= "c"+casilla.ToString();}
-						@if (ViewData.ContainsKey(casilla.ToString()))
-							{
-							<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="@casillaValue" value="@ViewData[casilla.ToString()]" />
-						}
-						else
-						{
-							<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="@casillaValue" value="@casilla.ToString()" />
-						}
-						@{
-							casilla++;
-						}
-					</div>
-				}
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("1"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c1" value="@ViewData["1"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c1" value="1" />
+					}
+				</div>
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("2"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c2" value="@ViewData["2"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="2" />
+					}
+				</div>
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("3"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c3" value="@ViewData["3"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="3" />
+					}
+				</div>
 			</div>
-		}
-	</div>
-</form>
+			<br />
+			<div class="row text-center g-0">
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("4"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c4" value="@ViewData["4"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="4" />
+					}
+				</div>
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("5"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c5" value="@ViewData["5"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="5" />
+					}
+				</div>
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("6"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c6" value="@ViewData["6"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="6" />
+					}
+				</div>
+			</div>
+			<br />
+			<div class="row text-center g-0">
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("7"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c7" value="@ViewData["7"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="7" />
+					}
+				</div>
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("8"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c8" value="@ViewData["8"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="8" />
+					}
+				</div>
+				<div class="col-4 g-0">
+					@if (ViewData.ContainsKey("9"))
+					{
+						<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c9" value="@ViewData["9"]" />
+					}
+					else
+					{
+						<input type="submit" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="botonPresionado" value="9" />
+					}
+				</div>
+			</div>
+		</div> *@
+		<br />
+		<br />
+		<br />
+		<br />
+		<div class="container g-0">
+			@{
+				int casilla = 1;
+			}
+			@for (int i = 1; i < 4; i++)
+			{
+				<div class="row text-center g-0">
+					@for (int j = 1; j < 4; j++)
+					{
+						<div class="col-4 g-0">
+							@{
+								string casillaValue = "c" + casilla.ToString();
+							}
+							@if (ViewData.ContainsKey(casilla.ToString()))
+							{
+							<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="@casillaValue" id="@casillaValue" value="@ViewData[casilla.ToString()]" />
+							}
+							else
+							{
+							<button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="@casillaValue" id="@casillaValue" value="@casilla.ToString()" onclick="return query(@casilla.ToString())" />
+							}
+							@{
+								casilla++;
+							}
+						</div>
+					}
+				</div>
+			}
+		</div>
+</div>
+@* <script>
+	$(document).ready(function () {
+		$("#c1").click(
+			function () {
+				$.post("/gato/Jugada", { c1: "X" }, function (data) {
+					console.log(data);
+					//Start a 10 second sleep/wait
+					await delay(10000);
 
+
+				});
+
+			}
+		)
+	});
+</script> *@
+@* <script>
+	$(document).ready(function () {
+		console.log("Tablero Inicial: " + JSON.stringify(@Html.Raw(Json.Serialize(Model))));
+		$("form").submit(function (e) {
+			e.preventDefault();
+			var val = $("input[type=submit][clicked=true]").val();
+			var formData = "";
+
+			// Recorre cada uno de los botones c1 a c9
+			for (var i = 1; i <= 9; i++) {
+				var casilla = "c" + i;
+				var valor = $("input[name='" + casilla + "']").val();
+
+				// Verifica si el valor no es nulo
+				if (valor !== "") {
+					// Si el valor es X o O, agrega el valor a formData
+					if (valor === "X" || valor === "O") {
+						formData += casilla + "=" + valor + "&";
+					}
+				}
+			}
+			formData += val;
+			$.ajax({
+				type: 'POST',
+				url: '/gato/Jugada',
+				data: formData,
+				success: function (data) {
+					console.log("Tablero Después de la Jugada: " + JSON.stringify(data.Tablero));
+
+					for (var i = 0; i < data.Tablero.length; i++) {
+						var casilla = "c" + (i + 1);
+						var nuevoValorCasilla = data.Tablero[i];
+						$("input[name='" + casilla + "']").val(nuevoValorCasilla);
+					}
+
+					if (data.Ganador !== "ninguno") {
+						alert("¡El ganador es: " + data.Ganador + "!");
+					}
+				},
+				error: function () {
+					// Manejar errores si es necesario
+				}
+			});
+		});
+		$("form input[type=submit]").click(function () {
+			$("input[type=submit]", $(this).parents("form")).removeattr("clicked");
+			$(this).attr("clicked", "true");
+		});
+	});
+</script>
+
+ *@

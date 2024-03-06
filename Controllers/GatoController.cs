@@ -18,7 +18,7 @@ namespace Caso_estudio1_Grupo1.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Jugada(string botonPresionado, 
+		public string Jugada( 
 			string c1,
 			string c2,
 			string c3,
@@ -27,39 +27,25 @@ namespace Caso_estudio1_Grupo1.Controllers
 			string c6,
 			string c7,
 			string c8,
-			string c9)
+			string c9,
+			string botonPresionado,
+			string dataString)
 		{
-			string[] entradas = { c1, c2, c3, c4, c5, c6, c7, c8, c9 };
+			//dataString is a variable with a syntax similar to this:
+			//   'c1=1&c2=2&c3=3&c4=4&c5=5&c6=6&c7=7&c8=8&c9=X&botonPresionado=2'
+			//We will split the string using the & sign, resulting in a string[]
+			//Then each of the values in the string[] will be split using the = sign, resulting in a string[][]
+			//We will then iterate through the string[][] and store the values in a 2D array
+			string[] entradas = dataString.Split('&');
+			string[][] valores = new string[entradas.Length][];
 			for (int i = 0; i < entradas.Length; i++)
 			{
-				if (entradas[i] != null)
-				{
-					botonPresionado = (i+1).ToString();
-					break;
-				}
+				valores[i] = entradas[i].Split('=');
 			}
 			string[,] tablero = new string[3, 3];
-			var cell1 = Request.Form["c1"];
-			var cell2 = Request.Form["c2"];
-			var cell3 = Request.Form["c3"];
-			var cell4 = Request.Form["c4"];
-			var cell5 = Request.Form["c5"];
-			var cell6 = Request.Form["c6"];
-			var cell7 = Request.Form["c7"];
-			var cell8 = Request.Form["c8"];
-			var cell9 = Request.Form["c9"];
 
-			tablero[0, 0] = Request.Form["c1"];
-			tablero[0, 1] = Request.Form["c2"];
-			tablero[0, 2] = Request.Form["c3"];
-			tablero[1, 0] = Request.Form["c4"];
-			tablero[1, 1] = Request.Form["c5"];
-			tablero[1, 2] = Request.Form["c6"];
-			tablero[2, 0] = Request.Form["c7"];
-			tablero[2, 1] = Request.Form["c8"];
-			tablero[2, 2] = Request.Form["c9"];
-			ViewData[botonPresionado] = "X";
-			return View("~/Views/Gato/Imposible.cshtml");
+
+			return "funciona!";
 		}
 		
 
