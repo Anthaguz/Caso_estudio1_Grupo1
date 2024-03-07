@@ -98,6 +98,14 @@ namespace Caso_estudio1_Grupo1.Controllers
                 ViewData["Password"] = password;
                 return View("Registro");
             }
+            else if (usuario.Archivo == null)
+            {
+                ViewData["Error"] = "La foto es requerida";
+                ViewData["Username"] = username;
+                ViewData["Nombre"] = nombre;
+                ViewData["Password"] = password;
+				return View("Registro");
+			}
             else
             {
                 Byte[] bytes;
