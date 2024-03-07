@@ -30,3 +30,27 @@
 		}
 	</div>
 </div>
+
+<div id="mensajeResultado">
+	@{
+		// Accede al estado del juego desde ViewData
+		string estadoJuego = ViewData["EstadoJuego"] as string ?? "EnCurso";
+	}
+
+	@if (estadoJuego == "X")
+	{
+		<p>¡La computadora ha ganado!</p>
+	}
+	else if (estadoJuego == "O")
+	{
+		<p>¡Has ganado!</p>
+	}
+	else if (estadoJuego == "Empate")
+	{
+		<p>¡El juego ha terminado en empate!</p>
+	}
+	else
+	{
+		<p>El juego está en curso...</p>
+	}
+</div>
