@@ -10,7 +10,8 @@ namespace Caso_estudio1_Grupo1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=Anthaguz-pc\\sqlexpress;Database=GatoImposibleGrupo1;Trusted_Connection=True;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer("Server=Anthaguz-pc\\sqlexpress;Database=GatoImposibleGrupo1;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-TKK1GA0;Database=GatoImposibleGrupo1;Trusted_Connection=True;TrustServerCertificate=True;"); //Cinseros
         }
 
         public DbSet<Usuario> Usuarios { get; set; }

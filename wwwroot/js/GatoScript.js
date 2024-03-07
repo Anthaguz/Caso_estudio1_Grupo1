@@ -25,7 +25,7 @@ var c9 = $("#c9").val();
         type: "POST",
         url: "/gato/jugada",
         data: { dataString },
-        success: function () {
+        success: function (data) {
             alert("Actualidad");
             //ahora vamos a procesar la respuesta del controller que es un simple string, se la mostraremos al usuario en un alert
             alert(data);
