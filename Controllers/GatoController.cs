@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Caso_estudio1_Grupo1.Statics;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Caso_estudio1_Grupo1.Controllers
@@ -11,7 +12,7 @@ namespace Caso_estudio1_Grupo1.Controllers
 		}
 		public IActionResult Imposible()
 		{
-			//Initial move by the computer
+			//Movimiento inicial de la computadora
 			ViewData["9"] = "X";
 
 			return View();
@@ -26,11 +27,15 @@ namespace Caso_estudio1_Grupo1.Controllers
 			{
 				valores[i] = entradas[i].Split('=');
 			}
-			string[,] tablero = new string[3, 3];
+			int jugada = int.Parse(valores[9][1])-1;
+			valores[jugada][1] = "O";
+			int jugadaComputadora = GatoService.JugadaComputadora(valores);
+			valores[jugadaComputadora][1] = "X";
 
 			//La logica del gato iria aqui, deberiamos implementar otra clase 
 			//helper que se encargue de todo, para no cargar tanto este metodo
-			return "funciona!";
+			string respuesta = GatoService.GenerarRespuesta(valores);
+			return respuesta;
 		}
 		
 

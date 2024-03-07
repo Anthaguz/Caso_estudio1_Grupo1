@@ -15,11 +15,11 @@
 						}
 						@if (ViewData.ContainsKey(casilla.ToString()))
 						{
-							<input type="submit" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="@casillaValue" id="@casillaValue" value="@ViewData[casilla.ToString()]" />
+							<button type="button" style="pointer-events:none;" class="btn btn-primary btn-tictactoe" name="@casillaValue" id="@casillaValue" text="@ViewData[casilla.ToString()]">@ViewData[casilla.ToString()]</button>
 						}
 						else
 						{
-							<button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="@casillaValue" id="@casillaValue" value="@casilla.ToString()" onclick="return query(@casilla.ToString())" />
+							<button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="@casillaValue" id="@casillaValue" value="@casilla.ToString()" onclick="return query(@casilla.ToString())">@casilla.ToString()</button>
 						}
 						@{
 							casilla++;
