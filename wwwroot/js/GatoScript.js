@@ -39,7 +39,7 @@
                 //    document.getElementById(id).removeAttribute("style");
                 //    document.getElementById(id).style.pointerEvents = "none";
                 //}
-
+                
                 // Usando JQuery
                 if (valor === "X" || valor === "O") {
                     $("#" + id).text(valor).removeAttr("style").css("pointer-events", "none");

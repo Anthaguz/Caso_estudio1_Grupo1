@@ -23,21 +23,27 @@ namespace Caso_estudio1_Grupo1.Controllers
 		{
 			string[] entradas = dataString.Split('&');
 			string[][] valores = new string[entradas.Length][];
+
 			for (int i = 0; i < entradas.Length; i++)
 			{
 				valores[i] = entradas[i].Split('=');
 			}
-			int jugada = int.Parse(valores[9][1])-1;
+
+			int jugada = int.Parse(valores[9][1]) - 1;
 			valores[jugada][1] = "O";
 			int jugadaComputadora = GatoService.JugadaComputadora(valores);
 			valores[jugadaComputadora][1] = "X";
 
-			//La logica del gato iria aqui, deberiamos implementar otra clase 
-			//helper que se encargue de todo, para no cargar tanto este metodo
 			string respuesta = GatoService.GenerarRespuesta(valores);
+
+			string estadoJuego = GatoService.VerificarEstadoJuego(valores);
+			ViewData["EstadoJuego"] = estadoJuego;
 			return respuesta;
+
+
 		}
-		
+
+
 
 	}
 }
