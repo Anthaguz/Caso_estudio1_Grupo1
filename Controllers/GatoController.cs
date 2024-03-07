@@ -12,6 +12,7 @@ namespace Caso_estudio1_Grupo1.Controllers
 		}
 		public IActionResult Imposible()
 		{
+			if (!LoginService.ValidateToken(HttpContext.Request.Cookies["token"])) { return Redirect("~/login/login"); }
 			//Movimiento inicial de la computadora
 			ViewData["9"] = "X";
 
