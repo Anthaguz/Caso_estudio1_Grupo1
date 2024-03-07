@@ -124,5 +124,12 @@ namespace Caso_estudio1_Grupo1.Controllers
             }
         }
 
+        public IActionResult Logout()
+        {
+            LoginService.CerrarSesion(HttpContext.Request.Cookies["token"]);
+			HttpContext.Response.Cookies.Delete("token");
+			return View("Login");
+		}
+
     }
 }

@@ -31,5 +31,30 @@ namespace Caso_estudio1_Grupo1.Statics
             cookieOptions.Expires = DateTime.Now.AddMinutes(20);
             return cookieOptions;
         }
+
+        public static bool ValidateToken(string token)
+        {
+			if (token == null)
+            {
+				return false;
+			}
+			var sesion = CRUD.ReadSesion(token);
+			if (sesion==null)
+            {
+				return false;
+			}
+			var usuario = CRUD.GetUsuarioById(sesion.IdUsuario);
+            if (usuario == null)
+            {
+				return false;
+			}
+			return true;
+		}
+
+        public static void CerrarSesion(string token)
+        {
+			var sesion = CRUD.ReadSesion(token);
+			CRUD.DeleteSesion(sesion);
+		}
     }
 }

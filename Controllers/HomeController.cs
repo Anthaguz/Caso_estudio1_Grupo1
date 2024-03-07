@@ -1,4 +1,5 @@
 using Case_estudio1_Grupo1.Models;
+using Caso_estudio1_Grupo1.Statics;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -16,21 +17,13 @@ namespace Case_estudio1_Grupo1.Controllers
 
         public IActionResult Index()
         {
-            var token = HttpContext.Request.Cookies["token"];
-            if (token==null)
-            {
-                return Redirect("~/login/login");
-            }
-            return View();
+			if (!LoginService.ValidateToken(HttpContext.Request.Cookies["token"])) { return Redirect("~/login/login"); }
+			return View();
         }
 
         public IActionResult Privacy()
         {
-            var token = HttpContext.Request.Cookies["token"];
-            if (token == null)
-            {
-                return Redirect("~/login/login");
-            }
+            if (!LoginService.ValidateToken(HttpContext.Request.Cookies["token"])){return Redirect("~/login/login");}
             return View();
         }
 
