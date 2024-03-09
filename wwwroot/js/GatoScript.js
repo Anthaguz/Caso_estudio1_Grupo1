@@ -25,11 +25,11 @@
             for (let i = 0; i < entradas.length; i++) {
                 valores[i] = entradas[i].split('=');
             }
-            for (let i = 0; i < valores.length; i++) {
+            for (let i = 0; i < 9; i++) {
                 let id = valores[i][0]; // Obtener el ID del componente HTML
                 let valor = valores[i][1]; // Obtener el valor que debería tener
 
-                // Con JavaScript puro
+                /* Con JavaScript puro
                 // Cambiar el texto dentro del botón
                 //document.getElementById(id).innerText = valor;
 
@@ -38,14 +38,40 @@
                 //    // Eliminar todos los estilos actuales y agregar la nueva regla
                 //    document.getElementById(id).removeAttribute("style");
                 //    document.getElementById(id).style.pointerEvents = "none";
-                //}
-                
+                }*/
+
                 // Usando JQuery
-                if (valor === "X" || valor === "O") {
-                    $("#" + id).text(valor).removeAttr("style").css("pointer-events", "none");
+                if (valor === "X") {
+                    $("#" + id).text(valor).removeAttr("style").css({
+                        "pointer-events": "none",
+                        "background-color": "red"
+                        });
+                } else if (valor === "O") {
+                    $("#" + id).text(valor).removeAttr("style").css({
+                        "pointer-events": "none",
+                        "background-color": "blue"
+                        });
                 } else {
                     $("#" + id).text(valor); // Si no es "X" ni "O", solo cambiar el texto
                 }
+            }
+            var resultadopartida = valores[10][1];
+            if (resultadopartida === "Empate") {
+                $("#ResultadoPartida").text("Empatamos").removeAttr("class").addClass("alert alert-warning text-center");;
+            } else if (resultadopartida === "EnCurso") {
+                $("#ResultadoPartida").text("Partida en curso");
+            } else if (resultadopartida === "X") {
+                $("#ResultadoPartida").text("Te gane!").removeAttr("class").addClass("alert alert-danger text-center");
+                for (let i = 0; i < 9; i++) {
+                    $("#c" + (i + 1)).css("pointer-events", "none");
+                }
+            } else if (resultadopartida === "O") {
+                $("#ResultadoPartida").text("Oh no! Me ganaste").removeAttr("class").addClass("alert alert-success text-center");
+                for (let i = 0; i < 9; i++) {
+                    $("#c" + (i + 1)).css("pointer-events", "none");
+                }
+            } else {
+                $("#ResultadoPartida").text("Reiniciar");
             }
         }
     });

@@ -35,13 +35,13 @@
         {
             string[,] tablero = ConvertirAArrayBidimensional(valores);
 
-            if (HayGanador(tablero, "X"))
-            {
-                return "X"; // La computadora (X) ha ganado
-            }
-            else if (HayGanador(tablero, "O"))
+            if (HayGanador(tablero, "O"))
             {
                 return "O"; // El jugador (O) ha ganado
+            }
+            else if (HayGanador(tablero, "X"))
+            {
+                return "X"; // La computadora (X) ha ganado
             }
             else if (EsEmpate(tablero))
             {
@@ -79,7 +79,7 @@
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (tablero[i, j] == null)
+                    if (tablero[i, j] != "O" && tablero[i, j] != "X")
                         return false; // Todavía hay al menos una casilla vacía
                 }
             }

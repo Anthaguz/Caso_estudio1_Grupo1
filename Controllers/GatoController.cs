@@ -29,16 +29,17 @@ namespace Caso_estudio1_Grupo1.Controllers
 			{
 				valores[i] = entradas[i].Split('=');
 			}
-
 			int jugada = int.Parse(valores[9][1]) - 1;
 			valores[jugada][1] = "O";
 			int jugadaComputadora = GatoService.JugadaComputadora(valores);
 			valores[jugadaComputadora][1] = "X";
-
-			string respuesta = GatoService.GenerarRespuesta(valores);
-
 			string estadoJuego = GatoService.VerificarEstadoJuego(valores);
-			ViewData["EstadoJuego"] = estadoJuego;
+			if (estadoJuego == "O")
+			{
+                valores[jugadaComputadora][1] = jugadaComputadora.ToString();
+            }
+            string respuesta = GatoService.GenerarRespuesta(valores);
+            respuesta = respuesta+"&EstadoJuego="+estadoJuego;
 			return respuesta;
 
 
