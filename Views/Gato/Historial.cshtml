@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Caso_estudio1_Grupo1.Models.Historial>
+@{
+	ViewData["Title"] = "Historial";
+}
+<script src="~/js/HistorialScript.js"></script>
+
+<div style="display:flex">
+	<div style="flex: 50%;">
+		<br />
+		<h2>Historial de partidas</h2>
+		<br />
+		<ul class="list-group overflow-scroll" style="height:700px;">
+
+			@foreach (var partida in Model)
+			{
+				<li class="list-group-item">
+					@if (partida.Resultado == "Derrota")
+					{
+						<a href="#" onclick="mostrarTablero('@partida.Tablero')" class="list-group-item list-group-item-danger" aria-current="true">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1">@partida.Resultado</h5>
+								<small>Duracion: @partida.Duracion</small>
+							</div>
+							<input type="hidden" id="@partida.IdJuego" value="@partida.Tablero"/>
+						</a>
+					}
+					else if (partida.Resultado == "Empate")
+					{
+						<a href="#" onclick="mostrarTablero('@partida.Tablero')" class="list-group-item list-group-item-warning" aria-current="true">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1">@partida.Resultado</h5>
+								<small>Duracion: @partida.Duracion</small>
+							</div>
+							<input type="hidden" id="@partida.IdJuego" value="@partida.Tablero" />
+						</a>
+					}
+					else
+					{
+						<a href="#" onclick="mostrarTablero('@partida.Tablero')" class="list-group-item list-group-item-success" aria-current="true">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1">@partida.Resultado</h5>
+								<small>Duracion: @partida.Duracion</small>
+							</div>
+							<input type="hidden" id="@partida.IdJuego" value="@partida.Tablero" />
+						</a>
+					}
+				</li>
+			}
+		</ul>
+	</div>
+	<div style="flex: 50%; ">
+		<br />
+		<h2 style="position:absolute; top:200px; left:63%;">Tablero final</h2>
+		<br />
+		<div class="grid" style="position:absolute; top:300px; left:60%;">
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c1" id="c1"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c2" id="c2"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c3" id="c3"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c4" id="c4"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c5" id="c5"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c6" id="c6"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c7" id="c7"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c8" id="c8"></button></div>
+			<div class="square"><button type="button" style="color: rgba(0, 0, 0, 0); pointer-events:none;" class="btn btn-primary btn-tictactoe" name="c9" id="c9"></button></div>
+		</div>
+	</div>
+</div>

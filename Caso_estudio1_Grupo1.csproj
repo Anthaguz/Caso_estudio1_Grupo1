@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\js\GatoScript.js" />
+    <None Include="wwwroot\js\HistorialScript.js" />
   </ItemGroup>
 
 </Project>

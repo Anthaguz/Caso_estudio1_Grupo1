@@ -1,8 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<br />
+<h1>Table top games</h1>
+<br />
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="card" style="width: 18rem;">
+		<img src="~/images/gato_imposible.png" class="card-img-top" alt="Imagen del juego de gato (tic tac toe) imposible.">
+        <div class="card-body">
+            <h5 class="card-title">Gato imposible</h5>
+            <p class="card-text">Intenta vencer a la computadora!</p>
+            <a id="pc" href="/gato/imposible" class="btn btn-primary">Comienza la computadora</a>
+            <p></p>
+            <a href="/gato/playerstarts" class="btn btn-primary" style="width: $(#pc).width();">Comienzo yo</a>
+        </div>
+    </div>
 </div>

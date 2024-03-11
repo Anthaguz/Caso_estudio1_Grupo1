@@ -17,6 +17,16 @@
                     valores[9][0] + "=" + valores[9][1];
             return respuesta;
         }
+
+        public static string GenerarTableroFinal(string[][] valores)
+        {
+			string tableroFinal = "";
+			for (int i = 0; i < 9; i++)
+            {
+				tableroFinal += valores[i][1];
+			}
+			return tableroFinal;
+		}
         private static string[][] ClonarTablero(string[][] tablero)
         {
             string[][] nuevoTablero = new string[tablero.Length][];

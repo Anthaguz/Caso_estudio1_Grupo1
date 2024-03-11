@@ -9,7 +9,7 @@
     var c7 = $("#c7").text();
     var c8 = $("#c8").text();
     var c9 = $("#c9").text();
-    dataString = "c1=" + c1 + "&c2=" + c2 + "&c3=" + c3 + "&c4=" + c4 + "&c5=" + c5 + "&c6=" + c6 + "&c7=" + c7 + "&c8=" + c8 + "&c9=" + c9 + "&botonPresionado=" + botonPresionado;
+    dataString = "c1=" + c1 + "&c2=" + c2 + "&c3=" + c3 + "&c4=" + c4 + "&c5=" + c5 + "&c6=" + c6 + "&c7=" + c7 + "&c8=" + c8 + "&c9=" + c9 + "&botonPresionado=" + botonPresionado + "&tiempo=" + document.getElementById("contadorSegundos").innerText;
     //alert(dataString); // Solo para verificar que se esté obteniendo correctamente, descomentar para testear de ser necesario
     $.ajax({
         type: "POST",
@@ -60,6 +60,7 @@
                 $("#ResultadoPartida").text("Empatamos").removeAttr("class").addClass("alert alert-warning text-center");;
             } else if (resultadopartida === "EnCurso") {
                 $("#ResultadoPartida").text("Partida en curso");
+                return;
             } else if (resultadopartida === "X") {
                 $("#ResultadoPartida").text("Te gane!").removeAttr("class").addClass("alert alert-danger text-center");
                 for (let i = 0; i < 9; i++) {
@@ -73,6 +74,17 @@
             } else {
                 $("#ResultadoPartida").text("Reiniciar");
             }
+            clearInterval(contador);
         }
     });
 }
+
+var segundos = 0;
+
+function actualizarContador() {
+    segundos++;
+    document.getElementById("contadorSegundos").innerText = segundos;
+}
+
+// Llama a la función actualizarContador() cada segundo
+var contador = setInterval(actualizarContador, 1000);

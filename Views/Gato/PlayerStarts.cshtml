@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Gato";
+}
+<script src="~/js/GatoScript.js"></script>
+<div id="div_gato" style="width:150px">
+    <div>
+        <h1>
+            GATO
+            <small class="text-muted"> IMPOSIBLE</small>
+        </h1>
+    </div>
+    <br />
+    <div class="grid">
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c1" id="c1" value="c1" onclick="return query(1)">1</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c2" id="c2" value="c2" onclick="return query(2)">2</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c3" id="c3" value="c3" onclick="return query(3)">3</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c4" id="c4" value="c4" onclick="return query(4)">4</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c5" id="c5" value="c5" onclick="return query(5)">5</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c6" id="c6" value="c6" onclick="return query(6)">6</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c7" id="c7" value="c7" onclick="return query(7)">7</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c8" id="c8" value="c8" onclick="return query(8)">8</button></div>
+        <div class="square"><button type="button" style="color: rgba(0, 0, 0, 0);" class="btn btn-primary btn-tictactoe" name="c9" id="c9" value="c9" onclick="return query(9)">9</button></div>
+    </div>
+    <br />
+
+    <div>Duracion de partida:</div>
+    <div class="alert alert-primary text-center col-20" role="alert" id="contadorSegundos">0</div>
+    <div>
+        <div class="alert alert-primary text-center col-20" role="alert" id="ResultadoPartida">Comenzamos</div>
+        <a href="/gato/playerstarts" class="btn btn-primary">Reiniciar</a>
+    </div>
+</div>
+

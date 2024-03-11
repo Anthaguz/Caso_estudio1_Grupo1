@@ -10,7 +10,7 @@ namespace Caso_estudio1_Grupo1.Models
         [Required]
         public int IdUsuario { get; set; }
         [Required]
-        public bool Resultado { get; set; }
+        public string Resultado { get; set; }
         [Required]
         public int Duracion { get; set; }
         [Required]
@@ -23,7 +23,7 @@ namespace Caso_estudio1_Grupo1.Models
         {
         }
         //Constructor con todas las propiedades
-        public Historial(int idJuego, int idUsuario, bool resultado, int duracion, string tablero, Usuario usuario)
+        public Historial(int idJuego, int idUsuario, string resultado, int duracion, string tablero, Usuario usuario)
         {
             IdJuego = idJuego;
             IdUsuario = idUsuario;
@@ -33,7 +33,7 @@ namespace Caso_estudio1_Grupo1.Models
             Usuario = usuario;
         }
         //Constructor con todas las propiedades menos el id
-        public Historial(int idUsuario, bool resultado, int duracion, string tablero, Usuario usuario)
+        public Historial(int idUsuario, string resultado, int duracion, string tablero, Usuario usuario)
         {
             IdUsuario = idUsuario;
             Resultado = resultado;
@@ -41,5 +41,12 @@ namespace Caso_estudio1_Grupo1.Models
             Tablero = tablero;
             Usuario = usuario;
         }
-    }
+		public Historial(int idUsuario, string resultado, int duracion, string tablero)
+		{
+			IdUsuario = idUsuario;
+			Resultado = resultado;
+			Duracion = duracion;
+			Tablero = tablero;
+		}
+	}
 }

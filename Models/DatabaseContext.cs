@@ -126,6 +126,14 @@ namespace Caso_estudio1_Grupo1.Models
             }
         }
 
+        public static IEnumerable<Historial> FindHistorialForUser(int id)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Historial.Where(h => h.IdUsuario == id).ToList();
+            }
+        }
+
         public static void UpdateHistorial(Historial historial)
         {
             using (var db = new DatabaseContext())

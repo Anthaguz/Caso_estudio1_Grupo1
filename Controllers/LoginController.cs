@@ -50,6 +50,10 @@ namespace Caso_estudio1_Grupo1.Controllers
                 CookieOptions cookieOptions = LoginService.GetCookieOptions();
                 string token = LoginService.CrearSesion(Usuario.IdUsuario);
                 HttpContext.Response.Cookies.Append("token", token, cookieOptions);
+                var sesion = CRUD.ReadSesion(token);
+                var usuario = CRUD.GetUsuarioById(sesion.IdUsuario);
+                ViewData["username"] = usuario.Username;
+                ViewData["foto"] = usuario.Foto;
                 return View("~/Views/Home/Index.cshtml");
             }
         }
